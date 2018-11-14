@@ -1,6 +1,7 @@
 package main;
 
 import main.GUI.ItemView;
+import main.GUI.ToolBar;
 import main.controller.PriceCrawler;
 import main.item.Item;
 
@@ -70,21 +71,6 @@ public class Main extends JFrame {
         showMessage(Double.toString(item.getPrice()));
         itemView.repaint();
 
-        if(item.getInitialPrice() > item.getPrice()) {
-
-            // Open an audio input stream.
-    //        URL url = this.getClass().getClassLoader().getResource("/image/wololo.wav");
-      //      AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            // Get a sound clip resource.
-     //       Clip clip = AudioSystem.getClip();
-            // Open audio clip and load samples from the audio input stream.
-     //       clip.open(audioIn);
-     //       clip.start();
-        }else{
-            //play audio
-        }
-
-
     }
 
     /** Callback to be invoked when the view-page icon is clicked.
@@ -125,9 +111,12 @@ public class Main extends JFrame {
     private JPanel makeControlPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         JButton refreshButton = new JButton("Refresh");
+        JButton addItemButton = new JButton("Add");
+        panel.add(new ToolBar());
         refreshButton.setFocusPainted(false);
         refreshButton.addActionListener(this::refreshButtonClicked);
         panel.add(refreshButton);
+        panel.add(addItemButton);
         return panel;
     }
 
