@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddItemDialog extends JDialog {
-    JPanel bottom;
-    JButton addButton, cancelButton;
-    DialogPanel dialogPanel;
-    Main main;
+    private JPanel bottom;
+    private JButton addButton, cancelButton;
+    private DialogPanel dialogPanel;
+    private Main main;
 
-    ItemManager itemManager;
+    private ItemManager itemManager;
 
     public void setMain (Main main){
         this.main = main;
@@ -57,7 +57,7 @@ public class AddItemDialog extends JDialog {
                         dialogPanel.urlField.getText()));
                 System.out.println("Item Added");
                 printList(itemManager);
-
+               // main.repaint();
             }
             dialogPanel.reset();
             setVisible(false);

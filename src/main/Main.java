@@ -49,18 +49,7 @@ public class Main extends JFrame {
     /** Create a new dialog. */
 
     public Main() {
-
         this(DEFAULT_SIZE);
-        /*
-        String bookName="Ghost In the Wires";
-        String bookURL="https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/";
-        double bookPrice = 17.00;
-        double priceChange = 0.00;
-        String bookAdded = "4/24/12";
-        item = new Item(bookName,bookURL,bookPrice,priceChange,bookAdded);
-        */
-
-
     }
 
     public ItemManager listSample(){

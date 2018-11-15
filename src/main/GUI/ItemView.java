@@ -77,6 +77,8 @@ public class ItemView extends JPanel {
 
     }
 
+
+
     private void paintDate(Graphics g, int x, int y) {
         g.setColor(Color.BLACK);
         g.setFont(new Font("Serif",Font.BOLD,12));
