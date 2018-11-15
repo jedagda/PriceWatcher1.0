@@ -59,7 +59,7 @@ public class DialogPanel extends JPanel {
         return new Dimension(350, 200);
     }
 
-    public void drawLayout(){
+    public void doLayout(){
         nameLabel.setBounds(10,10, 60,30);
         nameField.setBounds(70,15, 270,30);
 
