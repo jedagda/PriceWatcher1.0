@@ -178,6 +178,10 @@ public class Main extends JFrame {
         }).start();
     }
 
+    public ItemManager getItemManager(){
+        return itemManager;
+    }
+
 
 
     public static void main(String[] args) {

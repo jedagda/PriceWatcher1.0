@@ -17,6 +17,7 @@ public class ToolBar extends JPanel implements ActionListener {
     static final private String INFO = "info";
     private ItemView itemView;;
     private Main main;
+
    // private AddItemDialog addItemDialog = new AddItemDialog();
 
 
@@ -87,7 +88,6 @@ public class ToolBar extends JPanel implements ActionListener {
             if(dialog == null){
                dialog = new AddItemDialog(main);
             }
-
             dialog.setBounds(0,0,350,300);
             dialog.show();
         }
