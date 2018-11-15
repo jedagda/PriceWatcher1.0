@@ -20,6 +20,7 @@ public class DialogPanel extends JPanel {
     JTextField imageNameField;
 
     DialogPanel() {
+
         nameLabel = new JLabel("Name");
         nameField = new JTextField();
 

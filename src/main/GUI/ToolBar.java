@@ -87,6 +87,8 @@ public class ToolBar extends JPanel implements ActionListener {
             if(dialog == null){
                dialog = new AddItemDialog(main);
             }
+
+            dialog.setBounds(0,0,350,300);
             dialog.show();
         }
 
