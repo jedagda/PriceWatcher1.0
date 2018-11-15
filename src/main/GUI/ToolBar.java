@@ -1,5 +1,7 @@
 package main.GUI;
 
+import main.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +16,8 @@ public class ToolBar extends JPanel implements ActionListener {
     static final private String CHECKPRICE = "check price";
     static final private String INFO = "info";
     private ItemView itemView;;
+    private Main main;
+   // private AddItemDialog addItemDialog = new AddItemDialog();
 
 
     public ToolBar(){
@@ -32,6 +36,7 @@ public class ToolBar extends JPanel implements ActionListener {
         toolBar.add(button);
         button = makeNavigationButton("add", ADDITEM, "Adds an Item", "Add Item");
         toolBar.add(button);
+        button.addActionListener(makeAddItemHandler());
         button = makeNavigationButton("info", INFO, "View Information on applicaiton,", "View Info");
         toolBar.add(button);
     }
@@ -59,11 +64,35 @@ public class ToolBar extends JPanel implements ActionListener {
         if(CHECKPRICE.equals(cmd)){
             checkButtonClicked(e);
         }
+/*        else if(ADDITEM.equals(cmd)){
+            actionPerformed(e);
+        } */
     }
+
+    ActionListener makeAddItemHandler(){
+        return new AddItemHandler();
+    }
+
+
 
     private void checkButtonClicked(ActionEvent event) {
 
         //item.setPrice(priceCrawler.randomPrice());
         // itemView.repaint();
     }
+
+    class AddItemHandler implements ActionListener {
+        JDialog dialog;
+        public void actionPerformed(ActionEvent evt){
+            if(dialog == null){
+               dialog = new AddItemDialog(main);
+            }
+            dialog.show();
+        }
+
+    }
+
+
+
+
 }
