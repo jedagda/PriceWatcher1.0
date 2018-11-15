@@ -54,11 +54,14 @@ public class Main extends JFrame {
         */
         listSample();
         itemView.setItem(item);
+        convertListToJList();
+
+
     }
 
     public void listSample(){
         itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
-        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
+        itemManager.addItem(new Item("A","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
         itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
     }
 
@@ -73,7 +76,7 @@ public class Main extends JFrame {
     public JList<Item> convertListToJList(){
         DefaultListModel<Item> listModel = new DefaultListModel<>();
         for(int i = 0; i < itemManager.count(); i++){
-            //System.out.println(itemManager.getItems().get(i));
+           // System.out.println(itemManager.getItems().get(i).getName());
             listModel.addElement(itemManager.getItems().get(i));
         }
         itemList = new JList<>(listModel);
