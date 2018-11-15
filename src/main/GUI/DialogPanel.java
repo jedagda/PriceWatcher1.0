@@ -10,11 +10,9 @@ public class DialogPanel extends JPanel {
     JLabel urlLabel;
     JTextField urlField;
 
-    JLabel initialPriceLabel;
-    JTextField initialPriceField;
+   // JLabel initialPriceLabel;
+   // JTextField initialPriceField;
 
-    JLabel dateAddedLabel;
-    JTextField dateAddedField;
 
     JLabel imageNameLabel;
     JTextField imageNameField;
@@ -27,29 +25,12 @@ public class DialogPanel extends JPanel {
         urlLabel = new JLabel("Link");
         urlField = new JTextField();
 
-        initialPriceLabel = new JLabel("Price");
-        initialPriceField = new JTextField();
-
-        dateAddedLabel = new JLabel("Date");
-        dateAddedField = new JTextField();
-
-        imageNameLabel = new JLabel("Image");
-        imageNameField = new JTextField();
-
         add(nameLabel);
         add(nameField);
 
         add(urlLabel);
         add(urlField);
 
-        add(initialPriceLabel);
-        add(initialPriceField);
-
-        add(dateAddedLabel);
-        add(dateAddedField);
-
-        add(imageNameLabel);
-        add(imageNameField);
 
     }
     public Dimension getPreferredSize(){
@@ -67,22 +48,11 @@ public class DialogPanel extends JPanel {
         urlLabel.setBounds(10,40, 60,30);
         urlField.setBounds(70,45, 270,30);
 
-        initialPriceLabel.setBounds(10,70, 60,30);
-        initialPriceField.setBounds(70,75, 270,30);
-
-        dateAddedLabel.setBounds(10,100, 60,30);
-        dateAddedField.setBounds(70,105, 270,30);
-
-        imageNameLabel.setBounds(10,130, 60,30);
-        imageNameField.setBounds(70,135, 270,30);
     }
 
     public void reset() {
         nameField.setText("");
         urlField.setText("");
-        initialPriceField.setText("");
-        dateAddedField.setText("");
-        imageNameField.setText("");
     }
 
 

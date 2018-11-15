@@ -6,12 +6,14 @@ import main.GUI.ToolBar;
 import main.controller.AppCloser;
 import main.controller.PriceCrawler;
 import main.item.Item;
+import main.item.ItemListHolder;
 import main.item.ItemManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URI;
+
 
 
 /**
@@ -42,7 +44,10 @@ public class Main extends JFrame {
     private ItemManager itemManager = new ItemManager();
 
     private JList<Item> itemList;
+
+    private ItemListHolder itemListHolder = new ItemListHolder();
     /** Create a new dialog. */
+
     public Main() {
 
         this(DEFAULT_SIZE);
@@ -56,24 +61,23 @@ public class Main extends JFrame {
         */
 
 
-
     }
 
-    public void listSample(){
-        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17,"4/24/12","gitw"));
-        itemManager.addItem(new Item("Snow Crash","https://www.amazon.com/Snow-Crash-Neal-Stephenson/dp/0553380958" , 10.87,"4/02/00","snow-crash"));
-
+    public ItemManager listSample(){
+        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" ,"4/24/12","gitw"));
+        itemManager.addItem(new Item("Snow Crash","https://www.amazon.com/Snow-Crash-Neal-Stephenson/dp/0553380958" ,"4/02/00","snow-crash"));
+        return itemManager;
     }
 
-    public void setItemList(JPanel board){
-        itemList = convertListToJList();
+    public void setItemList(JPanel board, ItemManager itemManager){
+        itemList = convertListToJList(itemManager);
         itemList.setFixedCellHeight(160);
         JScrollPane listScroll = new JScrollPane(itemList);
         board.add(listScroll);
         itemList.setCellRenderer(new ItemRenderer());
     }
 
-    public JList<Item> convertListToJList(){
+    public JList<Item> convertListToJList(ItemManager itemManager){
         DefaultListModel<Item> listModel = new DefaultListModel<>();
         for(int i = 0; i < itemManager.count(); i++){
            // System.out.println(itemManager.getItems().get(i).getName());
@@ -139,10 +143,11 @@ public class Main extends JFrame {
         itemView = new ItemView();
         itemView.setClickListener(this::viewPageClicked);
         //board.add(itemView);
-        listSample();
-        itemView.setItem(item);
-        convertListToJList();
-        setItemList(board);
+        itemListHolder.setItemManager(listSample());
+        System.out.println(itemListHolder.getItemManager().count());
+       // itemView.setItem(item);
+        //convertListToJList(itemListHolder.getItemManager());
+        setItemList(board, itemListHolder.getItemManager());
 
 
 
@@ -156,7 +161,9 @@ public class Main extends JFrame {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         JButton refreshButton = new JButton("Refresh");
         JButton addItemButton = new JButton("Add");
-        panel.add(new ToolBar());
+        ToolBar toolBar = new ToolBar();
+        toolBar.setMain(this);
+        panel.add(toolBar);
         refreshButton.setFocusPainted(false);
         refreshButton.addActionListener(this::refreshButtonClicked);
         panel.add(refreshButton);

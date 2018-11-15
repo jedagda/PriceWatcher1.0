@@ -13,12 +13,18 @@ public class AddItemDialog extends JDialog {
     JPanel bottom;
     JButton addButton, cancelButton;
     DialogPanel dialogPanel;
-    Main main = new Main();
-    ItemManager itemManager = main.getItemManager();
+    Main main;
 
+    ItemManager itemManager;
+
+    public void setMain (Main main){
+        this.main = main;
+    }
 
     public AddItemDialog(JFrame owner){
         super(owner, true);
+        main =(Main)owner;
+        itemManager = main.getItemManager();
         setTitle("Add New Item");
         addButton = new JButton("Add");
         cancelButton = new JButton("Cancel");
@@ -48,9 +54,7 @@ public class AddItemDialog extends JDialog {
             String label = button.getText();
             if("Add".equals(label)){
                 itemManager.addItem(new Item(dialogPanel.nameField.getText(),
-                        dialogPanel.urlField.getText(),
-                        Double.parseDouble(dialogPanel.initialPriceField.getText()),
-                        dialogPanel.dateAddedField.getText(), dialogPanel.imageNameField.getText()));
+                        dialogPanel.urlField.getText()));
                 System.out.println("Item Added");
                 printList(itemManager);
 

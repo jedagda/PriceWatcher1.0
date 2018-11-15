@@ -18,6 +18,10 @@ public class ToolBar extends JPanel implements ActionListener {
     private ItemView itemView;;
     private Main main;
 
+    public void setMain (Main main){
+        this.main = main;
+    }
+
    // private AddItemDialog addItemDialog = new AddItemDialog();
 
 

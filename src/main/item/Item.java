@@ -1,5 +1,9 @@
 package main.item;
 
+import main.controller.PriceCrawler;
+
+import java.util.Date;
+
 /*
  * Item class stores information of an item
  */
@@ -20,29 +24,33 @@ public class Item {
     /** Image of the Item */
     private String image;
 
-    /**
-     * Constructor for Item class with no arguments
-     */
     public Item(){
-        name = "null";
-        initialPrice = 0.0;
-        price = 0.0;
+
     }
 
     /**
      * Constructor for Item
      * @param name represents the name of the Item.
      * @param url represents the URL address of the Item.
-     * @param initialPrice represents the price of the Item.
      * @param dateAdded represents the date when the Item was added to PriceWatcher.
      */
 
-
-    public Item(String name, String url, double initialPrice, String dateAdded, String image){
+    public Item (String name, String url){
         this.name = name;
         this.url = url;
+        this.initialPrice = new PriceCrawler().randomPrice();
         this.price = initialPrice;
-        this.initialPrice = initialPrice;
+        this.change = 0;
+        this.dateAdded = "11/15/18";
+        this.image = name;
+    }
+
+
+    public Item(String name, String url, String dateAdded, String image){
+        this.name = name;
+        this.url = url;
+        this.initialPrice = new PriceCrawler().randomPrice();
+        this.price = initialPrice;
         this.change = 0;
         this.dateAdded = dateAdded;
         this.image = image;
