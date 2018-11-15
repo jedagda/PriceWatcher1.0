@@ -52,9 +52,7 @@ public class Main extends JFrame {
         String bookAdded = "4/24/12";
         item = new Item(bookName,bookURL,bookPrice,priceChange,bookAdded);
         */
-        listSample();
-        itemView.setItem(item);
-        convertListToJList();
+
 
 
     }
@@ -68,8 +66,8 @@ public class Main extends JFrame {
     public void setItemList(JPanel board){
         itemList = convertListToJList();
         itemList.setFixedCellHeight(160);
-        add(new JScrollPane(itemList));
-        board.add(itemList);
+        JScrollPane listScroll = new JScrollPane(itemList);
+        board.add(listScroll);
         itemList.setCellRenderer(new ItemRenderer());
     }
 
@@ -77,7 +75,7 @@ public class Main extends JFrame {
         DefaultListModel<Item> listModel = new DefaultListModel<>();
         for(int i = 0; i < itemManager.count(); i++){
            // System.out.println(itemManager.getItems().get(i).getName());
-            listModel.addElement(itemManager.getItems().get(i));
+            listModel.addElement(itemManager.getItemAtI(i));
         }
         itemList = new JList<>(listModel);
         return itemList;
@@ -101,9 +99,11 @@ public class Main extends JFrame {
     private void refreshButtonClicked(ActionEvent event) {
 
         PriceCrawler priceCrawler = new PriceCrawler();
-        item.setPrice(priceCrawler.randomPrice());
-        showMessage(Double.toString(item.getPrice()));
-        itemView.repaint();
+        for(int i = 0; i < itemManager.count(); i++){
+            itemManager.getItems().get(i).setPrice(priceCrawler.randomPrice());
+        }
+        showMessage("New Price Obtained");
+        itemList.setCellRenderer(new ItemRenderer());
 
     }
 
@@ -136,7 +136,12 @@ public class Main extends JFrame {
         itemView = new ItemView();
         itemView.setClickListener(this::viewPageClicked);
         //board.add(itemView);
+        listSample();
+        itemView.setItem(item);
+        convertListToJList();
         setItemList(board);
+
+
 
         add(board, BorderLayout.CENTER);
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
