@@ -1,6 +1,6 @@
 package main.item;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ItemManager {
@@ -8,10 +8,10 @@ public class ItemManager {
     private List<Item> items;
 
     public ItemManager() {
-        items = new ArrayList<>();
+        items = new LinkedList<>();
     }
 
-    public Object count() {
+    public int count() {
         // TODO Auto-generated method stub
         return items.size();
     }
@@ -28,4 +28,11 @@ public class ItemManager {
         return items.contains(item);
     }
 
+    public Item getItemAtI(int i){
+        return items.get(i);
+    }
+
+    public List<Item> getItems(){
+        return this.items;
+    }
 }

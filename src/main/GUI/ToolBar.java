@@ -7,11 +7,14 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 
 
+
 public class ToolBar extends JPanel implements ActionListener {
 
     static final private String ADDITEM = "add item";
     static final private String CHECKPRICE = "check price";
     static final private String INFO = "info";
+    private ItemView itemView;;
+
 
     public ToolBar(){
         super(new BorderLayout());
@@ -27,7 +30,7 @@ public class ToolBar extends JPanel implements ActionListener {
         JButton button = null;
         button = makeNavigationButton("check", CHECKPRICE, "Checks price of Item", "Check Price");
         toolBar.add(button);
-        button = makeNavigationButton("additem", ADDITEM, "Adds an Item", "Add Item");
+        button = makeNavigationButton("add", ADDITEM, "Adds an Item", "Add Item");
         toolBar.add(button);
         button = makeNavigationButton("info", INFO, "View Information on applicaiton,", "View Info");
         toolBar.add(button);
@@ -53,6 +56,14 @@ public class ToolBar extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
-        String description = null;
+        if(CHECKPRICE.equals(cmd)){
+            checkButtonClicked(e);
+        }
+    }
+
+    private void checkButtonClicked(ActionEvent event) {
+
+        //item.setPrice(priceCrawler.randomPrice());
+        // itemView.repaint();
     }
 }

@@ -1,9 +1,11 @@
 package main;
 
+import main.GUI.ItemRenderer;
 import main.GUI.ItemView;
 import main.GUI.ToolBar;
 import main.controller.PriceCrawler;
 import main.item.Item;
+import main.item.ItemManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,25 +36,54 @@ public class Main extends JFrame {
 
     /** Create an instance of Item */
     private Item item;
+
+    private ItemManager itemManager = new ItemManager();
+
+    private JList<Item> itemList;
     /** Create a new dialog. */
     public Main() {
 
         this(DEFAULT_SIZE);
+        /*
         String bookName="Ghost In the Wires";
         String bookURL="https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/";
         double bookPrice = 17.00;
         double priceChange = 0.00;
         String bookAdded = "4/24/12";
         item = new Item(bookName,bookURL,bookPrice,priceChange,bookAdded);
+        */
+        listSample();
         itemView.setItem(item);
+    }
 
+    public void listSample(){
+        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
+        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
+        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
+    }
+
+    public void setItemList(JPanel board){
+        itemList = convertListToJList();
+        itemList.setFixedCellHeight(160);
+        add(new JScrollPane(itemList));
+        board.add(itemList);
+        itemList.setCellRenderer(new ItemRenderer());
+    }
+
+    public JList<Item> convertListToJList(){
+        DefaultListModel<Item> listModel = new DefaultListModel<>();
+        for(int i = 0; i < itemManager.count(); i++){
+            //System.out.println(itemManager.getItems().get(i));
+            listModel.addElement(itemManager.getItems().get(i));
+        }
+        itemList = new JList<>(listModel);
+        return itemList;
     }
 
     /** Create a new dialog of the given screen dimension. */
     public Main(Dimension dim) {
         super("Price Watcher");
         setSize(dim);
-
         configureUI();
         //setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -101,7 +132,9 @@ public class Main extends JFrame {
         board.setLayout(new GridLayout(1,1));
         itemView = new ItemView();
         itemView.setClickListener(this::viewPageClicked);
-        board.add(itemView);
+        //board.add(itemView);
+        setItemList(board);
+
         add(board, BorderLayout.CENTER);
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
         add(msgBar, BorderLayout.SOUTH);
