@@ -62,9 +62,9 @@ public class ItemView extends JPanel {
         final int lineGap = 20;
         //displays image of item
 
-        g.drawImage(getImage(item.getImage()+".png"), 0, 0,null);
+        g.drawImage(getImage(item.getImage()+".png"), 50, 30,null);
         //displays information of item
-        x+=300;
+        x+=150;
         paintName(g, x, y, "Name:", item.getName());
         y += lineGap;
         paintURL(g, x, y, "URL:", item.getURL());

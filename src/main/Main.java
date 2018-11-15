@@ -59,8 +59,8 @@ public class Main extends JFrame {
 
     public void listSample(){
         itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12","gitw"));
-        itemManager.addItem(new Item("A","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12","gitw"));
-        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12","gitw"));
+        itemManager.addItem(new Item("Snow Crash","https://www.amazon.com/Snow-Crash-Neal-Stephenson/dp/0553380958" , 10.87, 0,"4/02/00","snow-crash"));
+
     }
 
     public void setItemList(JPanel board){
