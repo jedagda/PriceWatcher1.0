@@ -62,7 +62,7 @@ public class ItemView extends JPanel {
         final int lineGap = 20;
         //displays image of item
 
-        g.drawImage(getImage("view.png"), 0, 0,null);
+        g.drawImage(getImage(item.getImage()+".png"), 0, 0,null);
         //displays information of item
         x+=300;
         paintName(g, x, y, "Name:", item.getName());

@@ -1,7 +1,5 @@
 package main.item;
 
-import java.awt.image.BufferedImage;
-
 /*
  * Item class stores information of an item
  */
@@ -20,7 +18,7 @@ public class Item {
     /** Date when the price was added */
     private String dateAdded;
     /** Image of the Item */
-    private BufferedImage image;
+    private String image;
 
     /**
      * Constructor for Item class with no arguments
@@ -41,13 +39,14 @@ public class Item {
      */
 
 
-    public Item(String name, String url, double initialPrice, double change, String dateAdded){
+    public Item(String name, String url, double initialPrice, double change, String dateAdded, String image){
         this.name = name;
         this.url = url;
         this.price = initialPrice;
         this.initialPrice = initialPrice;
         this.change = change;
         this.dateAdded = dateAdded;
+        this.image = image;
     }
 
     /**
@@ -106,6 +105,10 @@ public class Item {
 
     public String getDateAdded(){
         return dateAdded;
+    }
+
+    public String getImage(){
+        return image;
     }
 
     public String getPriceToString(){

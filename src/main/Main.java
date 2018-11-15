@@ -58,9 +58,9 @@ public class Main extends JFrame {
     }
 
     public void listSample(){
-        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
-        itemManager.addItem(new Item("A","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
-        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12"));
+        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12","gitw"));
+        itemManager.addItem(new Item("A","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12","gitw"));
+        itemManager.addItem(new Item("Ghost In the Wires","https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/" , 17, 0,"4/24/12","gitw"));
     }
 
     public void setItemList(JPanel board){
