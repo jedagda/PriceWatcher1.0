@@ -10,6 +10,7 @@ import main.item.ItemListHolder;
 import main.item.ItemManager;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URI;
@@ -62,19 +63,6 @@ public class Main extends JFrame {
 
     public Main() {
         this(DEFAULT_SIZE);
-
-    }
-
-    public void setMenuBar (){
-        JMenu file = new JMenu("File");
-        menuBar.add(file);
-        JMenuItem exit= new JMenuItem("Exit");
-        file.add(exit);
-
-        JMenu help = new JMenu("Help");
-        menuBar.add(help);
-        JMenuItem about = new JMenuItem("About");
-        help.add(about);
 
     }
 
@@ -152,10 +140,19 @@ public class Main extends JFrame {
 
         addWindowListener( new AppCloser());
 
+        JMenuBar menuBar = new JMenuBar();
+        menuBar = makeMenuBar(menuBar);
+        menuBar.setLayout(new BoxLayout(menuBar, BoxLayout.X_AXIS));
+        menuBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
+        menuBar.setBorder(new BevelBorder(BevelBorder.RAISED));
+
+
         setLayout(new BorderLayout());
+
         JPanel control = makeControlPanel();
         control.setBorder(BorderFactory.createEmptyBorder(10,16,0,16));
         add(control, BorderLayout.NORTH);
+
 
 
         itemBoard.setBorder(BorderFactory.createCompoundBorder(
@@ -192,6 +189,21 @@ public class Main extends JFrame {
         panel.add(refreshButton);
         panel.add(addItemButton);
         return panel;
+    }
+
+    private JMenuBar makeMenuBar(JMenuBar menuBar){
+        JMenu file = new JMenu("File");
+        menuBar.add(file);
+        JMenuItem exit= new JMenuItem("Exit");
+        file.add(exit);
+
+        JMenu help = new JMenu("Help");
+        menuBar.add(help);
+        JMenuItem about = new JMenuItem("About");
+        help.add(about);
+
+        return menuBar;
+
     }
 
     /** Show briefly the given string in the message bar. */
