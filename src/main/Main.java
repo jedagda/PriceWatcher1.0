@@ -48,8 +48,34 @@ public class Main extends JFrame {
     private ItemListHolder itemListHolder = new ItemListHolder();
     /** Create a new dialog. */
 
+    private JMenuBar menuBar = new JMenuBar();
+
+    private JPanel itemBoard = new JPanel();
+
+    public JPanel getItemBoard(){
+        return this.itemBoard;
+    }
+
+    public ItemListHolder getItemListHolder(){
+        return this.itemListHolder;
+    }
+
     public Main() {
         this(DEFAULT_SIZE);
+
+    }
+
+    public void setMenuBar (){
+        JMenu file = new JMenu("File");
+        menuBar.add(file);
+        JMenuItem exit= new JMenuItem("Exit");
+        file.add(exit);
+
+        JMenu help = new JMenu("Help");
+        menuBar.add(help);
+        JMenuItem about = new JMenuItem("About");
+        help.add(about);
+
     }
 
     public ItemManager listSample(){
@@ -62,14 +88,18 @@ public class Main extends JFrame {
         itemList = convertListToJList(itemManager);
         itemList.setFixedCellHeight(160);
         JScrollPane listScroll = new JScrollPane(itemList);
+        if(board.getComponentCount() > 0){
+            board.remove(0);
+        }
         board.add(listScroll);
+        board.updateUI();
         itemList.setCellRenderer(new ItemRenderer());
     }
 
     public JList<Item> convertListToJList(ItemManager itemManager){
         DefaultListModel<Item> listModel = new DefaultListModel<>();
         for(int i = 0; i < itemManager.count(); i++){
-           // System.out.println(itemManager.getItems().get(i).getName());
+            System.out.println(itemManager.getItems().get(i).getName());
             listModel.addElement(itemManager.getItemAtI(i));
         }
         itemList = new JList<>(listModel);
@@ -119,30 +149,34 @@ public class Main extends JFrame {
 
     /** Configure UI. */
     private void configureUI() {
+
+        addWindowListener( new AppCloser());
+
         setLayout(new BorderLayout());
         JPanel control = makeControlPanel();
         control.setBorder(BorderFactory.createEmptyBorder(10,16,0,16));
         add(control, BorderLayout.NORTH);
-        addWindowListener( new AppCloser());
-        JPanel board = new JPanel();
-        board.setBorder(BorderFactory.createCompoundBorder(
+
+
+        itemBoard.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(10,16,0,16),
                 BorderFactory.createLineBorder(Color.GRAY)));
-        board.setLayout(new GridLayout(1,1));
+        itemBoard.setLayout(new GridLayout(1,1));
         itemView = new ItemView();
         itemView.setClickListener(this::viewPageClicked);
-        //board.add(itemView);
+
         itemListHolder.setItemManager(listSample());
-        System.out.println(itemListHolder.getItemManager().count());
-       // itemView.setItem(item);
-        //convertListToJList(itemListHolder.getItemManager());
-        setItemList(board, itemListHolder.getItemManager());
+
+        setItemList(itemBoard, this.itemListHolder.getItemManager());
 
 
+        add(itemBoard, BorderLayout.CENTER);
 
-        add(board, BorderLayout.CENTER);
+
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
         add(msgBar, BorderLayout.SOUTH);
+
+
     }
 
     /** Create a control panel consisting of a refresh button. */
