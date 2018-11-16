@@ -13,6 +13,9 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URI;
 
 
@@ -52,6 +55,8 @@ public class Main extends JFrame {
     private JMenuBar menuBar = new JMenuBar();
 
     private JPanel itemBoard = new JPanel();
+
+    JPopupMenu menu = new JPopupMenu("Popup");
 
     public JPanel getItemBoard(){
         return this.itemBoard;
@@ -173,6 +178,16 @@ public class Main extends JFrame {
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
         add(msgBar, BorderLayout.SOUTH);
 
+        JMenuItem item = new JMenuItem("Change");
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        menu.add(item);
+        menu.setVisible(true);
+
 
     }
 
@@ -223,12 +238,38 @@ public class Main extends JFrame {
     public ItemManager getItemManager(){
         return itemManager;
     }
+    class MyLabel extends JLabel {
+        public MyLabel(String text) {
+            super(text);
+            addMouseListener(new PopupTriggerListener());
+        }
+
+        class PopupTriggerListener extends MouseAdapter {
+
+            public void mousePressed(MouseEvent ev) {
+
+                if (ev.isPopupTrigger()) {
+                    menu.show(ev.getComponent(), ev.getX(), ev.getY());
+                }
+            }
+            public void mouseReleased(MouseEvent ev) {
+                if (ev.isPopupTrigger()) {
+                    menu.show(ev.getComponent(), ev.getX(), ev.getY());
+                }
+            }
+            public void mouseClicked(MouseEvent ev) {
+
+            }
+        }
+    }
 
 
 
     public static void main(String[] args) {
         new Main();
     }
+
+
 
 
 }
