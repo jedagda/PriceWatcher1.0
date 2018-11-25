@@ -150,6 +150,7 @@ public class Main extends JFrame {
         menuBar.setLayout(new BoxLayout(menuBar, BoxLayout.X_AXIS));
         menuBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
         menuBar.setBorder(new BevelBorder(BevelBorder.RAISED));
+        add(menuBar, BorderLayout.BEFORE_LINE_BEGINS);
 
 
         setLayout(new BorderLayout());
