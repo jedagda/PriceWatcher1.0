@@ -165,8 +165,8 @@ public class Main extends JFrame {
                 BorderFactory.createEmptyBorder(10,16,0,16),
                 BorderFactory.createLineBorder(Color.GRAY)));
         itemBoard.setLayout(new GridLayout(1,1));
-        itemView = new ItemView();
-        itemView.setClickListener(this::viewPageClicked);
+     //   itemView = new ItemView();
+      //  itemView.setClickListener(this::viewPageClicked);
 
         itemListHolder.setItemManager(listSample());
 
